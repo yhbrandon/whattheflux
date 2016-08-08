@@ -1,5 +1,6 @@
 {
   "name": "what_the_flux",
+  "repository": "https://github.com/yhbrandon/whattheflux",
   "scripts": {
     "start": "node server/server.js"
   },
