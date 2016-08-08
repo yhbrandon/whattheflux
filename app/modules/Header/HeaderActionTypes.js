@@ -1,0 +1,1 @@
+export const GET_HEADER_DATA = 'GET_HEADER_DATA'

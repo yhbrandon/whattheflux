@@ -1,18 +1,24 @@
+// Core
 import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import App from './containers/App'
-import configureStore from './store/configureStore'
-import { makeAPICall } from './actions'
+import { Router, browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 
-const store = configureStore()
+// Routes
+import routes from './core/routes'
 
-store.dispatch(makeAPICall())
+// Store
+import configureStore from './core/configureStore'
+
+const initialState = {}
+const store = configureStore(initialState, browserHistory)
+const history = syncHistoryWithStore(browserHistory, store)
 
 render(
-  <Provider store={store}>
-    <App />
+  <Provider store={ store }>
+    <Router history={ history } children={ routes(store) } />
   </Provider>,
   document.getElementById('root')
 )

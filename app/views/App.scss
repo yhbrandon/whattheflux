@@ -1,0 +1,15 @@
+@import '~normalize.css/normalize';
+
+main {
+  display: block;
+  position: relative;
+  overflow: auto;
+}
+
+.react-layout-components--box {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}

@@ -1,7 +1,9 @@
-import '../styles/components/welcome.scss'
 import React, { Component, PropTypes } from 'react'
+
+import Box from 'react-layout-components'
 import Divider from 'material-ui/lib/divider'
-import Icon from 'babel!svg-react!../assets/react.svg?name=Icon'
+
+import './Welcome.scss'
 
 class Welcome extends Component {
 
@@ -11,14 +13,12 @@ class Welcome extends Component {
 
   render() {
     const { title, tagline } = this.props
-    console.log(title)
     return (
-      <section id="welcome">
-        <Icon width="350" height="350"/>
-        <div className="headline">
+      <section className="welcome">
+        <Box fit center column>
           <h1>{title}</h1>
           <h2>{tagline}</h2>
-        </div>
+        </Box>
       </section>
     )
   }
