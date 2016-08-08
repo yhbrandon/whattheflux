@@ -13,6 +13,7 @@ class Welcome extends Component {
 
   render() {
     const { title, tagline } = this.props
+
     return (
       <section className="welcome">
         <Box fit center column>
