@@ -1,6 +1,12 @@
+// Core
 import React, { Component, PropTypes } from 'react'
 
+// Third Party Components
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Header from '../modules/Header/HeaderContainer'
+
+// Styles
+import 'react-flex/index.scss'
 import './App.scss'
 
 class App extends Component {
@@ -12,12 +18,14 @@ class App extends Component {
     const { children } = this.props
 
     return (
-      <div className="container">
-        <Header />
-        <main>
-          { children }
-        </main>
-      </div>
+      <MuiThemeProvider>
+        <div className="container">
+          <Header />
+          <main>
+            { children }
+          </main>
+        </div>
+      </MuiThemeProvider>
     )
   }
 }

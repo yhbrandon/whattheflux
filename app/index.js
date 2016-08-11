@@ -5,12 +5,16 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Routes
 import routes from './core/routes'
 
 // Store
 import configureStore from './core/configureStore'
+
+// Inject events for prop regulation
+injectTapEventPlugin()
 
 // Saw this on this boilerplate, thought it was cool
 // https://github.com/davezuko/react-redux-starter-kit

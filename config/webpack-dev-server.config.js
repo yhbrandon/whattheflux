@@ -6,7 +6,7 @@ module.exports = {
   root: {
     path: root
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     root + '/app/index'
@@ -24,24 +24,13 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loaders: [ 'babel' ],
-        exclude: /node_modules/,
-        include: root
-      },
-      {
-        test: /\.json$/,
-        loaders: [ 'json' ],
-        exclude: /node_modules/,
-        include: root
+        exclude: /node_modules/
       },
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
-      },
-      {
-        test: /\.(png|jpg)$/,
-        loader: 'file-loader?name=images/[name].[ext]'
       }
     ]
   }

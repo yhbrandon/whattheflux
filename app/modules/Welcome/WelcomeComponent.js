@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
-import Box from 'react-layout-components'
-import Divider from 'material-ui/lib/divider'
+import { Flex } from 'react-flex'
+import Divider from 'material-ui/Divider'
 
 import './Welcome.scss'
 
@@ -16,10 +16,10 @@ class Welcome extends Component {
 
     return (
       <section className="welcome">
-        <Box fit center column>
+        <Flex column={ true } alignItems="center" justifyContent="center">
           <h1>{title}</h1>
           <h2>{tagline}</h2>
-        </Box>
+        </Flex>
       </section>
     )
   }
