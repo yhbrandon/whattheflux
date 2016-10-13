@@ -6,7 +6,7 @@ React / Redux starter kit with a focus on a modular file structure for self cont
 
 ## Libraries
 - React
-- Reduct
+- Redux
 - React Toolbox
 - React Material Flexbox
 - LoDash
