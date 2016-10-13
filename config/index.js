@@ -32,5 +32,4 @@ config.db = {
 	url: process.env.MONGO_URL || 'mongodb://localhost:27017/oh-hi'
 }
 
-
 export default config
