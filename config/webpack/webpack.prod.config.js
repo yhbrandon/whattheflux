@@ -2,7 +2,7 @@ import webpack from 'webpack'
 import merge from 'webpack-merge'
 import { assign } from 'lodash'
 
-import config from '../config'
+import config from '../../config'
 import webpackConfig from './webpack.base.config'
 
 const prodConfig = {

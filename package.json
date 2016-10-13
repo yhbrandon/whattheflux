@@ -15,7 +15,7 @@
   "license": "MIT",
   "betterScripts": {
     "compile": {
-      "command": "babel-node -- ./node_modules/.bin/webpack -p --config ./webpack/webpack.prod.config.js --progress --colors"
+      "command": "babel-node -- ./node_modules/.bin/webpack -p --config config/webpack/webpack.prod.config.js --progress --colors"
     },
     "dev": {
       "command": "babel-node --harmony bin/server.js",
@@ -24,7 +24,7 @@
       }
     },
     "prod": {
-      "command": "npm run lint && npm run test && npm run clean && npm run compile",
+      "command": "npm run clean && npm run compile",
       "env": {
         "NODE_ENV": "production"
       }
