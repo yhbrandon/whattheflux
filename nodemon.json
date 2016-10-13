@@ -5,7 +5,6 @@
     "src/server/",
     "src/client/core",
     "src/client/middlewares",
-    "src/client/",
     "package.json"
   ]
 }
