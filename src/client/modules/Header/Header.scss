@@ -1,0 +1,24 @@
+.appBar {
+	height: 64px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 22;
+
+	.header {
+		background-color: $color-white;
+		border-bottom: 1px solid $color-border;
+	}
+
+	.wrapper {
+		max-width: $layout-lg;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.logo {
+		height: 48px;
+		width: 48px;
+	}
+
+}

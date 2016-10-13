@@ -1,0 +1,14 @@
+.app {
+	height: 100%;
+  position: absolute;
+  width: 100%;
+  transition: background .3s ease-in-out;
+
+  &.light {
+  	background-color: $color-white;
+  }
+
+  &.dark {
+  	background-color: #f4f4f4;
+  }
+}

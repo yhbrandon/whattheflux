@@ -1,0 +1,17 @@
+@import "~react-toolbox/lib/commons";
+
+body {
+	background-color: $color-background;
+}
+
+a {
+	color: $color-primary;
+	text-decoration: none;
+}
+
+main {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 64px 16px 36px;
+  max-width: $layout-lg;
+}
