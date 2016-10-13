@@ -1,18 +1,19 @@
 # React / Redux Boilerplate
 
-Plug and play setup for React and Redux with examples.
+React / Redux starter kit with a focus on a modular file structure for self contained functionality.
 
 ---
 
 ## Libraries
 - React
 - Reduct
-- Material-UI
+- React Toolbox
+- React Material Flexbox
 - LoDash
 
 ## Requirements
 
-- [Node](https://nodejs.org) 4.0 or newer
+- [Node](https://nodejs.org) 6.0 or newer
 
 ## Installation
 
@@ -26,7 +27,7 @@ npm install
 ## Starting App
 
 ```
-npm start
+npm run build:dev
 ```
 
 Open `http://localhost:3000`
