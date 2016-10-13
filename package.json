@@ -18,7 +18,7 @@
       "command": "babel-node -- ./node_modules/.bin/webpack -p --config config/webpack/webpack.prod.config.js --progress --colors"
     },
     "dev": {
-      "command": "nodemon bin/server.js --exec babel-node --harmony",
+      "command": "nodemon bin/server.js --exec 'babel-node --harmony'",
       "env": {
         "NODE_ENV": "development"
       }
