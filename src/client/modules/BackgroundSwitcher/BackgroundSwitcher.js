@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Button } from 'react-toolbox'
 
 const Switcher = ({ toggleBackground }) => (

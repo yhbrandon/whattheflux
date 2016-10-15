@@ -9,5 +9,4 @@ const mapPropsToState = (state) => {
 	return { theme: state.app.theme ? state.app.theme : 'light' }
 }
 
-
 export default connect(mapPropsToState)(App)

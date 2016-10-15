@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Flexbox from 'react-material-flexbox'
 
 import BackgroundSwitcher from 'modules/BackgroundSwitcher/BackgroundSwitcherContainer'

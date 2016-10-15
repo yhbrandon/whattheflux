@@ -6,7 +6,6 @@ import { assign, clone } from 'lodash'
 import config from '../../config'
 import webpackConfig from './webpack.base.config'
 
-
 const devConfig = {
 	entry  : assign({}, webpackConfig.entry, {
 		app: [
