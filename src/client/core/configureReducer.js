@@ -11,10 +11,10 @@ export default (state = initialState, action) => {
   const key = action.key ? action.key : 'app'
 
   switch (type) {
-  	case constants.reducerActions.SET:
-  		return merge({}, state, {
-  			[key]: action.payload
-  		})
+    case constants.reducerActions.SET:
+      return merge({}, state, {
+        [key]: action.payload
+      })
     case constants.reducerActions.REQUEST:
       return merge({}, state, {
         [key]: {

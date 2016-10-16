@@ -18,23 +18,23 @@ const store = configureStore(initialState, browserHistory)
 const history = syncHistoryWithStore(browserHistory, store)
 
 render (
-	<AppContainer errorReporter={ Redbox }>
-		<App store={ store } history={ history } />
-	</AppContainer>,
-	documentRoot
+  <AppContainer errorReporter={ Redbox }>
+    <App store={ store } history={ history } />
+  </AppContainer>,
+  documentRoot
 )
 
 if (__DEV__) {
-	if (module.hot) {
-		module.hot.accept('./App', () => {
-			const NextApp = require('./App').default
+  if (module.hot) {
+    module.hot.accept('./App', () => {
+      const NextApp = require('./App').default
 
-			render(
-				<AppContainer errorReporter={ Redbox }>
-					<NextApp store={ store } history={ history } />
-				</AppContainer>,
-				documentRoot
-			)
-		});
-	}
+      render(
+        <AppContainer errorReporter={ Redbox }>
+          <NextApp store={ store } history={ history } />
+        </AppContainer>,
+        documentRoot
+      )
+    });
+  }
 }

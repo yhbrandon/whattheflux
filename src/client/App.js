@@ -5,14 +5,14 @@ import { Provider } from 'react-redux'
 import Routes from 'core/configureRoutes'
 
 const App = (props) => (
-	<Provider store={ props.store }>
-		<Routes history={ props.history } />
-	</Provider>
+  <Provider store={ props.store }>
+    <Routes history={ props.history } />
+  </Provider>
 )
 
 App.propTypes = {
-	history: PropTypes.object.isRequired,
-	store: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
 }
 
 export default App

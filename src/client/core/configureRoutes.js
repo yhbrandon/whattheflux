@@ -7,15 +7,15 @@ import App from 'views/App/AppContainer'
 import About from 'views/About/About'
 
 const childRoutes = (
-	<Route path="/" component={ App }>
-		<IndexRoute component={ About }/>
-	</Route>
+  <Route path="/" component={ App }>
+    <IndexRoute component={ About }/>
+  </Route>
 )
 
 const routes = (props) => (
-	<Router history={ props.history }>
-		{ childRoutes }
-	</Router>
+  <Router history={ props.history }>
+    { childRoutes }
+  </Router>
 )
 
 export default routes

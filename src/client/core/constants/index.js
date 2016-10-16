@@ -1,7 +1,7 @@
 export default {
   ROOTURL: "http://127.0.0.1:8080/",
   reducerActions: {
-  	SET      :  "SET",
+    SET      :  "SET",
     REQUEST  :  "REQUEST",
     RECEIVE  :  "RECEIVE",
     ERROR    :  "ERROR",

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import App from 'views/App/App'
 
 const mapPropsToState = (state) => {
-	return { theme: state.app.theme ? state.app.theme : 'light' }
+  return { theme: state.app.theme ? state.app.theme : 'light' }
 }
 
 export default connect(mapPropsToState)(App)
