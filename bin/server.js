@@ -21,16 +21,14 @@ app.use(express.static(config.paths.base))
 app.use(historyApiFallback({ verbose : true }))
 
 // Checking environment
-if (config.env === 'development')
-	console.log(chalk.yellow('[webpack] Initializing development middlewares...'))
-
-	devServer(app, config)
+if (config.env === 'development') {
+  console.log(chalk.yellow('[webpack] Initializing development middlewares...'))
+  devServer(app, config)
+}
 
 app.listen(config.port, error => {
-	if (error)
+  if (error)
     console.error(chalk.red(error))
   else
-  	console.log(chalk.green(`[express] Listening at http://${config.host}:${config.port}`))
+    console.log(chalk.green(`[express] Listening at http://${config.host}:${config.port}`))
 })
-
-

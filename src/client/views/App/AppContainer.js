@@ -14,5 +14,4 @@ const mapPropsToState = (state) => {
 	return { theme }
 }
 
-
 export default connect(mapPropsToState)(App)

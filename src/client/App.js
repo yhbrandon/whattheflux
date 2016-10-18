@@ -11,8 +11,8 @@ const App = (props) => (
 )
 
 App.propTypes = {
-	history: PropTypes.object.isRequired,
-	store: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
 }
 
 export default App
