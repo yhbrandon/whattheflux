@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
-import Redbox from 'redbox-react'
+import { Router } from 'react-router'
 import { Provider } from 'react-redux'
 
-import Routes from 'core/configureRoutes'
+import routes from 'core/routes'
 
 const App = (props) => (
 	<Provider store={ props.store }>
-		<Routes history={ props.history } />
+		<Router history={ props.history } routes={ routes(props.store) } />
 	</Provider>
 )
 
