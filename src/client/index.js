@@ -8,7 +8,6 @@ import Redbox from 'redbox-react'
 import { Provider } from 'react-redux'
 
 import configureStore from 'core/configureStore'
-import Routes from 'core/configureRoutes'
 
 import App from './App'
 
