@@ -15,13 +15,13 @@ import Logo from 'assets/logo.svg'
 import theme from 'modules/Header/Header.scss'
 
 const Header = (props) => (
-	<div className={ theme.appBar } data-oh-hi='header'>
-		<AppBar className={ theme.header } flat>
-			<Flexbox className={ theme.wrapper } layout='row' flex align='start center'>
-				<Svg className={ theme.logo } source={ Logo } />
-			</Flexbox>
-		</AppBar>
-	</div>
+  <div className={ theme.appBar } data-oh-hi='header'>
+    <AppBar className={ theme.header } flat>
+      <Flexbox className={ theme.wrapper } layout='row' flex align='start center'>
+        <Svg className={ theme.logo } source={ Logo } />
+      </Flexbox>
+    </AppBar>
+  </div>
 )
 
 export default Header

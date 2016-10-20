@@ -1,11 +1,18 @@
-import configureAction from 'core/configureAction'
+import { createAction } from 'core/utils'
 
 let theme = 'light'
 
 export const toggleBackground = () => {
-	theme = theme === 'light' ? 'dark' : 'light'
-	
+  theme = theme === 'light' ? 'dark' : 'light'
+
+  const action = {
+    key: 'theme',
+    payload: {
+      theme: theme
+    }
+  }
+
   return (dispatch) => {
-    dispatch(configureAction('theme', theme))
+    dispatch(createAction('CALL_APP', action))
   }
 }

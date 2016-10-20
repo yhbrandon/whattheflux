@@ -1,7 +1,13 @@
-import constants from 'core/constants'
+import { actionTypes } from 'core/constants'
+
+const { CALL_APP } = actionTypes
 
 export default store => next => action => {
-	if(action.type !== constants.reducerActions.CALL_APP) return next(action)
+  const { type, types, payload } = action
 
-	next({ type: action.actionTypes.set, key: action.key, payload: action.payload })
+  if (type !== CALL_APP) return next(action)
+
+  const [ SET ] = types
+
+  next({ type: SET, ...payload })
 }

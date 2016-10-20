@@ -6,7 +6,6 @@ import appMiddleware from 'middlewares/appMiddleware'
 import createLogger from 'redux-logger'
 import rootReducer from './rootReducer'
 
-
 export default (preloadedState, history) => {
 
   let loggerMiddleware = createLogger()
