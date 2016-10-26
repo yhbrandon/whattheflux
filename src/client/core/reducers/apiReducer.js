@@ -1,12 +1,24 @@
 import { merge } from 'lodash'
-
 import { actionTypes } from 'core/constants'
 
+// Initial state for the global store
 const initialState = {}
+// Initial state for each key passed in by the action
+const itemState = {
+  data: null,
+  isFetching: false,
+  lastUpdated: 0
+}
 
 const { REQUEST, RECEIVE, ERROR } = actionTypes
 
-const item = (state = { data: null, isFetching: false, lastUpdated: 0 }, action) => {
+/*
+ * @name item
+ * @description logic responsible for setting the state for the appropriate key
+ * @param {object} state  default state
+ * @param {object} action params passed in from middlewares
+ */
+const item = (state = itemState, action) => {
   const { dataType, type, payload } = action
 
   switch(type) {
@@ -25,6 +37,12 @@ const item = (state = { data: null, isFetching: false, lastUpdated: 0 }, action)
   }
 }
 
+/*
+ * @name default
+ * @description logic for mapping key to global store, this uses item.
+ * @param {object} state  default state
+ * @param {object} action params passed in from middlewares
+ */
 export default (state = initialState, action) => {
   const { type, key, payload } = action
 
