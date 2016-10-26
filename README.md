@@ -6,7 +6,6 @@ React / Redux starter kit with a focus on a modular file structure for self cont
 
 - Node 4.2.0
 - Npm 2.14.7
-- MongoDB
 
 ## Technologies Used
 
