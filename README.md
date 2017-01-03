@@ -1,11 +1,11 @@
-# React / Redux Boilerplate
+# What the flux
 
 React / Redux starter kit with a focus on a modular file structure for self contained functionality.
 
 ## Prerequisites
 
-- Node 4.2.0
-- Npm 2.14.7
+- Node 6.5.0
+- Npm 3.10.3
 
 ## Technologies Used
 
@@ -15,8 +15,7 @@ React / Redux starter kit with a focus on a modular file structure for self cont
 - React-toolbox
 - Lodash
 - Webpack
-- Enzyme
-- Eslint
+
 
 ## Installation
 
@@ -24,7 +23,8 @@ React / Redux starter kit with a focus on a modular file structure for self cont
   npm install
 ```
 
-#### Building
+
+#### Building the code
 
 You have access to many processes on the frontend. Chose the ony most applicable to your needs:
 
@@ -32,14 +32,7 @@ You have access to many processes on the frontend. Chose the ony most applicable
 |------------------|-----------|
 |clean|Removes the current dist/ folder|
 |compile|Compiles static files into dist/|
-|build|Runs linting, tests and comiles source|
-|build:dev|Same as build, except it starts a dev server|
-|build:prod|Same as build, except it sets the node environment to production|
-|test|Runs unit tests once|
-|test:watch|Runs unit tests and watches for changes|
-|lint|Lints both js and scss files|
-|lint:js|Lints js files|
-|lint:sass|Lints scss files|
+|dev|Webpack builds and starts a dev server|
 
 If you do boot up a development server:
 
@@ -49,32 +42,29 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 
 #### Project Layout
 
-The project is spilt into two main sections, client code sits in `client` while the server code sits in `server`. App specific scripts are stored in `bin`. All build configurations are store in `config`.
+Client code sits in `src`. App specific scripts are stored in `bin`. All build configurations are store in `config`.
 
 ```
 .
-├── bin                 # Build scripts
-├── config              # Build config
-├── src                 # Application source
-│   └── client          # Client side code
-│   │   ├── assets      # Static assets
-│   │   ├── core        # Core Files
-│   │   ├── middlewares # Redux Middlewares
-│   │   ├── modules     # React Modules
-│   │   └── views       # React Views
-│   │ 
-│   │
-│   └── server          # Server side code
+├── bin             # Build scripts
+├── config          # Build config
+├── src             # Application source
+│   ├── assets      # Static assets
+│   ├── core        # Core Files
+│   ├── middlewares # Redux Middlewares
+│   ├── modules     # React Modules
+│   └── views       # React Views
 
 ```
 
 #### Modules
 
-For the front end we are taking a module layout approach (domain). Each module should be self contained holding the logic for react, reduct, and styling. This folder is contained within `client/app/modules`
+For the front end we are taking a module layout approach (domain). Each module should be self contained holding the logic for react, reduct, and styling. This folder is contained within `src/modules`
 
 ```
 .
 └── TestModule                 # Module Folder
+    ├── index.js               # Index for export
     ├── TestModule.js          # Stateless component
     ├── TestModule.scss        # Styling for component
     ├── TestModuleActions.js   # Redux actions consumed by component
@@ -84,7 +74,7 @@ For the front end we are taking a module layout approach (domain). Each module s
 
 #### Views
 
-Views should remain stateless, their only responsibility is laying out the modules needed for that view. This folder is contained within `client/app/views`
+Views should remain stateless, their only responsibility is laying out the modules needed for that view. This folder is contained within `src/views`
 
 ```
 .
@@ -114,21 +104,10 @@ createAction expects a type and an action object.
 Expected Types:
 
 ```
-CALL_API # For making api calls
 CALL_APP # For making app specific calls
 ```
 
 Expected actions:
-
-CALL_API
-```
-{
-  key: '',       # Key used by reducer to set data in global store
-  endpoint: '',  # API endpoint
-  method: 'GET', # API method
-  dataType: {}   # Expected datatype from response
-}
-```
 
 CALL_APP
 ```
@@ -140,26 +119,9 @@ CALL_APP
 
 Examples:
 
-CALL_API
-
-```
-export const getUser = (user) => {
-  const action = {
-    key: 'user',
-    endpoint: '`users/${user.id}`',
-    method: 'GET',
-    dataType: {}
-  }
-
-  return (dispatch) => {
-    dispatch(createAction('CALL_API', action))
-  }
-}
-```
-
 CALL_APP
 ```
-export const toggleSideNav = (isOpen) => {
+const toggleSideNav = (isOpen) => {
   const action = {
     key: 'navigation',
     payload: {
@@ -167,10 +129,10 @@ export const toggleSideNav = (isOpen) => {
     }
   }
 
-  return (dispatch) => {
-    dispatch(createAction('CALL_APP', action))
-  }
+  return createAction('CALL_APP', action)
 }
+
+export { toggleSideNav }
 ```
 
 You'll notice that the function is being exported so that it can be imported into our container element and mapped to that element's props using redux. Also we are returning a dispatch, this is necessary in order for redux reducers and middlewares to consume the action.
@@ -184,18 +146,6 @@ In a typical redux application the developer must write a reducer for each state
 #### Redux - Middlewares
 
 Our middleware are set to intercept the actions defined above. They take these actions and chain the appropriate dispatches needed for the reducers to set the state accordingly.
-
-API Middleware:
-
-```
- type: [CALL_API] # The action to intercept
- types: [ REQUEST, RECIEVE, ERROR ] # Used to specific state of fetch
- payload: { body, endpoint, key, method, dataType } # Object set from the action
-
- REQUEST # Dispatches that the action is about to make a request, send in the dataType to the reducer to prepare the state
- RECIEVE # Dispatches that the action has successfully made a request and sends the response to the reducers
- ERROR   # Dispatches that the action request has returned an error and sends the error message to the reducers
-```
 
 APP Middleware:
 
@@ -220,17 +170,15 @@ import { bindActionCreators } from 'redux'
 
 import Component from 'my-stateless-component'
 
+import Actions from './my-container-actions'
+
 const mapStateToProps = ({ app: { stuff = {} } }) => {
   const { param } = stuff
 
   return { param }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Actions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export default connect(mapStateToProps, Actions)(Component)
 ```
 
 Stateless Component:
@@ -266,8 +214,7 @@ That route object must look like:
 ```
 {
   label: '',     # Header Label
-  path: '',      # Url path 
-  components:    # Header / Footer / Main components
+  path: '',      # Url path
   component: ''  # React view to render
 }
 ```

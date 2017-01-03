@@ -1,0 +1,91 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.panel {
+  background-color: $color-white;
+  border: 1px solid $color-divider;
+  border-radius: 4px;
+  padding: 0 $layout-gutter-width;
+  max-height: $standard-increment-desktop;
+  overflow: hidden;
+  transition: all $animation-duration $animation-curve-default;
+
+  .content {
+    padding-bottom: $layout-gutter-width;
+  }
+
+  .toolbar {
+    cursor: pointer;
+    height: $standard-increment-desktop;
+
+    .title {
+      font-weight: 500;
+      margin-right: $layout-gutter-width-sm;
+      width: 200px;
+    }
+
+    .subTitle {
+      color: $color-text-secondary;
+
+      @media screen and (max-width: $layout-breakpoint-sm) {
+        display: none;
+      }
+      
+    }
+
+    .icon {
+      transition: all $animation-duration $animation-curve-default;
+    }
+
+    .iconExpanded {
+      transform: rotate(180deg);
+    }
+
+  }
+
+  &.inGroup {
+    border-radius: 0;
+  }
+
+  &.expanded {
+    border-radius: 4px;
+    margin: $layout-gutter-width 0;
+    max-height: 9999px;
+    transition: all $animation-duration $animation-curve-default;
+
+    &.firstPanel {
+      margin-top: 0;
+    }
+
+  }
+
+  &.firstPanel {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &.lastPanel {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+}
+
+.panelGroup {
+  display: flex;
+  flex-direction: column;
+
+  .panel {
+    margin-top: -1px;
+
+    &.expanded {
+      margin: $layout-gutter-width 0;
+    }
+
+    &.firstPanel {
+      margin-top: 0;
+    }
+
+  }
+
+}

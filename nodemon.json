@@ -1,10 +1,8 @@
 {
   "watch": [
-    "bin/",
-    "config/",
-    "src/server/",
-    "src/client/core",
-    "src/client/middlewares",
-    "package.json"
+    "bin/*",
+    "config/*",
+    "src/core",
+    "src/middlewares"
   ]
 }

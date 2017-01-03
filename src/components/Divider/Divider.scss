@@ -1,0 +1,9 @@
+@import "~react-toolbox/lib/colors";
+@import "~react-toolbox/lib/globals";
+
+.divider {
+  display: block;
+  border-top: 1px solid $color-divider;
+  margin: 0;
+  width: 100%;
+}
