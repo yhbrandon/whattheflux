@@ -1,4 +1,4 @@
-# What the flux
+# <img src="http://gdurl.com/r088" height="48" />
 
 React / Redux starter kit with a focus on a modular file structure for self contained functionality.
 
