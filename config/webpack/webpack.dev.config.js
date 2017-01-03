@@ -6,16 +6,17 @@ import { assign, clone } from 'lodash'
 import config from '../../config'
 import webpackConfig from './webpack.base.config'
 
+
 const devConfig = {
   entry  : assign({}, webpackConfig.entry, {
     app: [
-      `webpack-hot-middleware/client?path=/__webpack_hmr&reload=true`,
+      `webpack-hot-middleware/client?path=/__webpack_hmr&reload=true`,  
     ].concat(webpackConfig.entry.app),
     vendor: [
       'react-hot-loader/patch'
     ].concat(webpackConfig.entry.vendor)
   }),
-  devtool: 'source-map',
+  devtool: 'source-maps',
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     new webpack.optimize.OccurenceOrderPlugin(),

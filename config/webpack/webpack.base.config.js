@@ -11,7 +11,7 @@ export default {
   context: config.paths.base,
   entry: {
     app: [
-      `${config.paths.app}/index.js`
+      `${config.paths.src}/index.js`
     ],
     vendor: [
       'babel-polyfill',
@@ -32,20 +32,19 @@ export default {
     root: config.paths.src,
     modulesDirectories: [
       'node_modules',
-      `${config.paths.app}`,
-      `${config.paths.server}`
+      `${config.paths.src}`
     ],
     extensions: ['', '.js', '.jsx', '.scss', '.css', '.json']
   },
   postcss: [autoprefixer],
   sassLoader: {
-    data: `@import "${config.paths.app}/core/theme/_config.scss";`
+    data: `@import "${config.paths.src}/core/theme/_config.scss";`
   },
   plugins: [
     new ExtractTextPlugin('main.css', { allChunks: true }),
     new webpack.DefinePlugin(config.globals),
     new HtmlWebpackPlugin({
-      template: `${config.paths.app}/index.html`,
+      template: `${config.paths.src}/index.html`,
       hash: false,
       filename: 'index.html',
       inject: true
@@ -63,16 +62,8 @@ export default {
         loader: 'style!css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|jpeg)$/,
         loader: 'file-loader?name=img/img-[hash:6].[ext]'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
-        test: /\.svg$/,
-        loader: 'raw-loader'
       }
     ]
   }
