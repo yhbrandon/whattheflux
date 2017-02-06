@@ -1,6 +1,6 @@
 {
-  "name": "Geppetto",
-  "repository": "https://github.com/blacklocus/geppetto",
+  "name": "Whattheflux",
+  "repository": "https://github.com/yhbrandon/whattheflux",
   "scripts": {
     "clean": "rimraf dist",
     "compile": "better-npm-run compile",
