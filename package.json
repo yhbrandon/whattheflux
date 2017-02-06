@@ -9,7 +9,7 @@
   },
   "betterScripts": {
     "compile": {
-      "command": "babel-node -- ./node_modules/.bin/webpack -p --config ./config/webpack/webpack.prod.config.js --progress --colors"
+      "command": "babel-node -- bin/compile.js"
     },
     "dev": {
       "command": "nodemon --exec babel-node --harmony bin/server.js",
