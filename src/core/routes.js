@@ -1,21 +1,16 @@
-import { map } from 'lodash'
+import React from 'react'
+import { IndexRoute, Route } from 'react-router'
 
-// Paths
-import { paths } from 'core/constants'
+// Views
+import App from 'views/App'
 
-const children = () => {
-  return map(paths.app.children, (child) => {
-    const { path, components, onEnter } = child
+// Modules
+import Welcome from 'modules/Welcome'
 
-    return { path, components, onEnter }
-  })
-}
-
-export const routes = (store) => ({
-  path: paths.app.path,
-  component: paths.app.component,
-  indexRoute: paths.app.index,
-  childRoutes: children()
-})
+const routes = (
+  <Route path='/' component={ App }>
+    <IndexRoute component={ Welcome } />
+  </Route>
+)
 
 export default routes

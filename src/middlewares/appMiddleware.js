@@ -1,7 +1,3 @@
-import { actionTypes } from 'core/constants'
-
-const { CALL_APP } = actionTypes
-
 /*
  * @name apiMiddleware
  * @description middleware responsible for handling CALL_API actions
@@ -12,7 +8,7 @@ const { CALL_APP } = actionTypes
 export default store => next => action => {
   const { type, types, payload } = action
 
-  if (type !== CALL_APP) return next(action)
+  if (type !== 'CALL_APP') return next(action)
 
   const [ SET ] = types
 

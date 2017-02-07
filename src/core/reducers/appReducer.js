@@ -1,10 +1,5 @@
-import { merge } from 'lodash'
-import { actionTypes } from 'core/constants'
-
 // Initial State
 const initialState = {}
-
-const { SET } = actionTypes
 
 /*
  * @name item
@@ -16,8 +11,8 @@ const item = (state = {}, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case SET:
-      return merge({}, state, payload)
+    case 'SET':
+      return Object.assign({}, state, payload)
     default:
       return state
   }
@@ -33,8 +28,8 @@ export default (state = initialState, action) => {
   const { type, key } = action
 
   switch (type) {
-    case SET:
-      return merge({}, state, {
+    case 'SET':
+      return Object.assign({}, state, {
         [key]: item(state[key], action)
       })
     default:

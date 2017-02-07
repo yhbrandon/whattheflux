@@ -4,9 +4,8 @@ import thunkMiddleware from 'redux-thunk'
 import apiMiddleware from 'middlewares/apiMiddleware'
 import appMiddleware from 'middlewares/appMiddleware'
 import createLogger from 'redux-logger'
-import rootReducer from './rootReducer'
 
-export default (preloadedState, history) => {
+export default (preloadedState, history, rootReducer) => {
   let loggerMiddleware = createLogger()
 
   let middlewares = [

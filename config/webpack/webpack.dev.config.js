@@ -1,27 +1,24 @@
 
 import webpack from 'webpack'
 import merge from 'webpack-merge'
-import { assign, clone } from 'lodash'
+import { assign } from 'lodash'
 
 import config from '../../config'
 import webpackConfig from './webpack.base.config'
 
-
 const devConfig = {
-  entry  : assign({}, webpackConfig.entry, {
-    app: [
-      `webpack-hot-middleware/client?path=/__webpack_hmr&reload=true`,  
-    ].concat(webpackConfig.entry.app),
-    vendor: [
-      'react-hot-loader/patch'
-    ].concat(webpackConfig.entry.vendor)
-  }),
-  devtool: 'source-maps',
+  entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    'react-hot-loader/patch',
+    `${config.paths.src}/index.js`
+  ],
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.EvalSourceMapDevToolPlugin(),
+    new webpack.NamedModulesPlugin()
   ]
 }
 

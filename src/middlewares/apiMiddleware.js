@@ -1,7 +1,4 @@
 import { fetchJSON } from 'core/utils'
-import { actionTypes } from 'core/constants'
-
-const { CALL_API } = actionTypes
 
 /*
  * @name apiMiddleware
@@ -13,7 +10,7 @@ const { CALL_API } = actionTypes
 export default store => next => action => {
   const { type, types, payload } = action
 
-  if (type !== CALL_API) return next(action)
+  if (type !== 'CALL_API') return next(action)
 
   const [ REQUEST, RECEIVE, ERROR ] = types
   const { body, headers, endpoint, key, method, dataType } = payload

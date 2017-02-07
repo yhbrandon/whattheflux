@@ -1,5 +1,3 @@
-import { actionTypes } from 'core/constants'
-
 // Initial state for the global store
 const initialState = {}
 // Initial state for each key passed in by the action
@@ -8,8 +6,6 @@ const itemState = {
   isFetching: false,
   lastUpdated: 0
 }
-
-const { REQUEST, RECEIVE, ERROR } = actionTypes
 
 /*
  * @name item
@@ -21,9 +17,9 @@ const item = (state = itemState, action) => {
   const { dataType, type, payload } = action
 
   switch (type) {
-    case REQUEST:
+    case 'REQUEST':
       return Object.assign({}, state, { isFetching: true, data: state.data ? state.data : dataType, message: null })
-    case RECEIVE:
+    case 'RECEIVE':
       return Object.assign({}, state, {
         isFetching: false,
         data: payload.data,
@@ -31,7 +27,7 @@ const item = (state = itemState, action) => {
         message: payload.message,
         success: payload.success
       })
-    case ERROR:
+    case 'ERROR':
       return Object.assign({}, state, { isFetching: false, message: payload ? payload.messages : '', success: payload ? payload.success : '' })
     default:
       return state
@@ -48,9 +44,9 @@ export default (state = initialState, action) => {
   const { type, key } = action
 
   switch (type) {
-    case RECEIVE:
-    case ERROR:
-    case REQUEST:
+    case 'RECEIVE':
+    case 'ERROR':
+    case 'REQUEST':
       return Object.assign({}, state, {
         [key]: item(state[key], action)
       })

@@ -4,10 +4,8 @@ import { Provider } from 'react-redux'
 
 import routes from 'core/routes'
 
-const App = (props) => (
-  <Provider store={ props.store }>
-    <Router history={ props.history } routes={ routes(props.store) } />
-  </Provider>
+const App = ({ history, store }) => (
+  <Router history={ history } routes={ routes } />
 )
 
 App.propTypes = {

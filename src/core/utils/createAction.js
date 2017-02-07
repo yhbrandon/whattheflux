@@ -1,15 +1,4 @@
-import actionTypes from 'core/constants/actionTypes'
-import { getToken } from 'core/utils'
-
-const {
-  CALL_API,
-  CALL_APP,
-  REQUEST,
-  RECEIVE,
-  ERROR,
-  SET,
-  ROUTE,
-  CALL_EVENT } = actionTypes
+import config from '../../../config'
 
 /**
  * @name createAction (public)
@@ -21,11 +10,11 @@ const action = (type, action) => {
   if (!action) return
 
   switch (type) {
-    case CALL_API:
+    case 'CALL_API':
       return apiAction(action)
-    case CALL_APP:
+    case 'CALL_APP':
       return appAction(action)
-    case CALL_EVENT || ROUTE:
+    case 'CALL_EVENT' || ROUTE:
       return gaAction(type, action)
     default:
       return action
@@ -39,7 +28,7 @@ const action = (type, action) => {
  */
 const apiAction = (action) => {
   // Builds url for api
-  let url = action.external ? action.endpoint : `http://www.api.oh-hi.us/${action.endpoint}`
+  let url = action.external ? action.endpoint : `http://${config.api.host}:${config.api.port}/${action.endpoint}`
 
   /*
    * Action object expects:
@@ -52,13 +41,12 @@ const apiAction = (action) => {
 
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': getToken()
+    'Content-Type': 'application/json'
   }
 
   return {
-    type: CALL_API,
-    types: [REQUEST, RECEIVE, ERROR],
+    type: 'CALL_API',
+    types: ['REQUEST', 'RECEIVE', 'ERROR'],
     payload: {
       body: action.body ? action.body : null,
       headers: action.headers ? action.headers : headers,
@@ -83,8 +71,8 @@ const appAction = (action) => {
    */
 
   return {
-    type: CALL_APP,
-    types: [SET],
+    type: 'CALL_APP',
+    types: ['SET'],
     payload: {
       key: action.key,
       payload: action.payload

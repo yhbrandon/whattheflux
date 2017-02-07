@@ -10,9 +10,9 @@ import 'core/theme/commons.scss'
 
 const App = ({ children }) => (
   <div data-what-the-flux='app'>
-    <Header />
+    <Header active />
     <main data-what-the-flux='main'>{ children }</main>
-    <Footer />
+    <Footer active />
   </div>
 )
 

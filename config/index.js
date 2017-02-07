@@ -14,6 +14,12 @@ config.paths = {
   base : BASE,
   src  : `${BASE}/src`,
   dist : `${BASE}/dist`,
+  node_modules: `${BASE}/node_modules`
+}
+
+config.api = {
+  host: 'localhost',
+  port: 8080
 }
 
 config.globals = {

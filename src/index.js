@@ -1,29 +1,52 @@
 // Core
 import React from 'react'
 import { render } from 'react-dom'
-import { browserHistory } from 'react-router'
+import RedBox from 'redbox-react'
+import { browserHistory, Router } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
-import Redbox from 'redbox-react'
+import { Provider } from 'react-redux'
 
 import configureStore from 'core/configureStore'
+import rootReducer from 'core/rootReducer'
 
 import App from './App'
 
 const documentRoot = document.getElementById('root')
 const initialState = window.__INITIAL_STATE__
-const store = configureStore(initialState, browserHistory)
+const store = configureStore(initialState, browserHistory, rootReducer)
 const history = syncHistoryWithStore(browserHistory, store)
 
-render(
-  <AppContainer errorReporter={ Redbox }>
-    <App store={ store } history={ history } />
-  </AppContainer>,
-  documentRoot
-)
-
-if (__DEV__) {
-  if (module.hot) {
-    module.hot.accept()
-  }
+const renderApp = (Content) => {
+  render(
+    <AppContainer>
+      <Provider store={ store }>
+        <Content history={ history } store={ store } />
+      </Provider>
+    </AppContainer>,
+    documentRoot,
+  )
 }
+
+if (module.hot) {
+  module.hot.accept('./core/rootReducer', () => {
+    store.replaceReducer(rootReducer)
+  })
+
+  const reRenderApp = (content) => {
+    try {
+      renderApp(content)
+    } catch (error) {
+      render(<RedBox error={ error } />, documentRoot)
+    }
+  }
+
+  module.hot.accept('./App', () => {
+    const NewApp = require('./App').default
+
+    reRenderApp(NewApp)
+  })
+
+}
+
+renderApp(App)

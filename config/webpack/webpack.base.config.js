@@ -1,3 +1,4 @@
+import path from 'path'
 import webpack from 'webpack'
 import autoprefixer from 'autoprefixer'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -5,66 +6,71 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 import config from '../../config'
 
-export default {
-  name: 'name',
+const baseConfig = {
   target: 'web',
-  context: config.paths.base,
-  entry: {
-    app: [
-      `${config.paths.src}/index.js`
-    ],
-    vendor: [
-      'babel-polyfill',
-      'react',
-      'react-redux',
-      'react-router',
-      'react-router-redux',
-      'redux'
-    ]
-  },
+  context: config.paths.src,
   output: {
     path: config.paths.dist,
-    pathInfo: true,
     publicPath: '/',
     filename: '[name]-[hash].js'
   },
   resolve: {
-    root: config.paths.src,
-    modulesDirectories: [
+    extensions: ['.js', '.jsx', '.scss', '.json'],
+    modules: [
       'node_modules',
       `${config.paths.src}`
-    ],
-    extensions: ['', '.js', '.jsx', '.scss', '.css', '.json']
+    ]
   },
-  postcss: [autoprefixer],
-  sassLoader: {
-    data: `@import "${config.paths.src}/core/theme/_config.scss";`
+  module: {
+    rules: [{
+      test: /\.js$/,
+      use: ['babel-loader'],
+      include: [`${config.paths.src}`],
+      exclude: /node_modules/,
+    }, {
+      test: /(\.scss|\.css)$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        loader: [
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          {
+            loader: 'postcss-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      })
+    }, {
+      test: /\.(png|jpg|gif|jpeg)$/,
+      use: ['file-loader?name=img/img-[hash:6].[ext]']
+    }]
   },
   plugins: [
-    new ExtractTextPlugin('main.css', { allChunks: true }),
-    new webpack.DefinePlugin(config.globals),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer],
+        sassLoader: {
+          context: '/',
+          data: `@import "${config.paths.src}/core/theme/_config.scss";`,
+          includePaths: [path.resolve(__dirname, 'src', 'scss')]
+        }
+      }
+    }),
     new HtmlWebpackPlugin({
       template: `${config.paths.src}/index.html`,
       hash: false,
       filename: 'index.html',
       inject: true
-    })
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel'
-      },
-      {
-        test: /(\.scss|\.css)$/,
-        loader: 'style!css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'
-      },
-      {
-        test: /\.(png|jpg|gif|jpeg)$/,
-        loader: 'file-loader?name=img/img-[hash:6].[ext]'
-      }
-    ]
-  }
+    }),
+    new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
+    new webpack.DefinePlugin(config.globals),
+  ]
 }
+
+export default baseConfig
