@@ -38,7 +38,7 @@ If you do boot up a development server:
 
 Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Philosophies / Uses 
+## Philosophies / Uses
 
 #### Project Layout
 
@@ -85,11 +85,11 @@ Views should remain stateless, their only responsibility is laying out the modul
 
 #### JavaScript
 
-We use es6 / es7 syntax and options for our application. We are currently transpiling to es5 this using babel. 
+We use es6 / es7 syntax and options for our application. We are currently transpiling to es5 this using babel.
 
 #### Redux - Actions
 
-In an attempt to keep boilerplate to a minimum and make it easier to have self-contained modules, we have created helpers for building redux actions. 
+In an attempt to keep boilerplate to a minimum and make it easier to have self-contained modules, we have created helpers for building redux actions.
 
 You can access the action helper by importing and using:
 
@@ -139,7 +139,7 @@ You'll notice that the function is being exported so that it can be imported int
 
 #### Redux - Reducers
 
-In a typical redux application the developer must write a reducer for each state driven component and include that in the global store. This can be somewhat burdensome and requires touching too many files. In an attempt to make this easier, we have create global reducers that will update the global store with the key and payloads passed in from the actions. What this means for the developer is that they do not have to write reducers, this is automatically handled for them! 
+In a typical redux application the developer must write a reducer for each state driven component and include that in the global store. This can be somewhat burdensome and requires touching too many files. In an attempt to make this easier, we have create global reducers that will update the global store with the key and payloads passed in from the actions. What this means for the developer is that they do not have to write reducers, this is automatically handled for them!
 
 **Remember that key that we had to pass into the action? The reducers need that in order to set the data to the appropriate key!**
 
@@ -159,7 +159,7 @@ APP Middleware:
 
 #### React
 
-Generally we want our react components (modules in our case) to be as modular as possible. The component core should be stateless and simple in scope. If the component needs state, either self contained or redux, we would want a container for the module. This container would hold the responsibilities of mapping both state and actions to the props of the stateless component. The container should also hold responsibilities for the react component life cycle. 
+Generally we want our react components (modules in our case) to be as modular as possible. The component core should be stateless and simple in scope. If the component needs state, either self contained or redux, we would want a container for the module. This container would hold the responsibilities of mapping both state and actions to the props of the stateless component. The container should also hold responsibilities for the react component life cycle.
 
 Container:
 
@@ -207,18 +207,9 @@ export default Component
 
 #### Routes
 
-We use constants for building our routes. If a new route needs be create please place this in `core/constants/paths.js`.
+Add new routes to: `core/routes.js`.
 
-That route object must look like:
 
-```
-{
-  label: '',     # Header Label
-  path: '',      # Url path
-  component: ''  # React view to render
-}
-```
-
-#### Theming 
+#### Theming
 
 We use [React-toolbox](http://react-toolbox.com/#/install) for our source of material components and style. If any theming needs to be done on a component please follow their guide for doing so.
