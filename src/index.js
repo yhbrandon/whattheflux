@@ -2,7 +2,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import RedBox from 'redbox-react'
-import { browserHistory, Router } from 'react-router'
+import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
@@ -10,7 +10,7 @@ import { Provider } from 'react-redux'
 import configureStore from 'core/configureStore'
 import rootReducer from 'core/rootReducer'
 
-import App from './App'
+import Routes from 'core/Routes'
 
 const documentRoot = document.getElementById('root')
 const initialState = window.__INITIAL_STATE__
@@ -21,7 +21,7 @@ const renderApp = (Content) => {
   render(
     <AppContainer>
       <Provider store={ store }>
-        <Content history={ history } store={ store } />
+        <Content history={ history } />
       </Provider>
     </AppContainer>,
     documentRoot,
@@ -41,12 +41,12 @@ if (module.hot) {
     }
   }
 
-  module.hot.accept('./App', () => {
-    const NewApp = require('./App').default
+  module.hot.accept('./core/Routes', () => {
+    const NewApp = require('./core/Routes').default
 
     reRenderApp(NewApp)
   })
 
 }
 
-renderApp(App)
+renderApp(Routes)

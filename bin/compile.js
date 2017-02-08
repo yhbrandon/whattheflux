@@ -6,6 +6,8 @@ import webpack from 'webpack'
 import config from '../config'
 import webpackProdConfig from '../config/webpack/webpack.prod.config'
 
+console.log(chalk.yellow('[webpack] Compiling source...'))
+
 const compiler = webpack(webpackProdConfig)
 
 compiler.run(error => {

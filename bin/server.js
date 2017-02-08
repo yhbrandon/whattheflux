@@ -1,6 +1,5 @@
 // Core
 import chalk from 'chalk'
-import express from 'express'
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 
@@ -23,9 +22,11 @@ new WebpackDevServer(webpack(webpackDevConfig), {
     chunks: false,
     chunkModules: false
   }
-}).listen(config.port, 'localhost', function (err) {
-  if (err) {
+}).listen(config.port, config.host, error => {
+  if (error) {
     console.log(chalk.red(error))
+
+    return reject(error)
   }
 
   console.log(chalk.green(`[webpack] APP Listening at http://${config.host}:${config.port}`))

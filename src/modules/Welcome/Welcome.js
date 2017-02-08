@@ -15,7 +15,6 @@ const Welcome = () => (
     <img className={ theme.logo } src={ logo } />
     <h3>What the Flux!</h3>
     <p>React / Redux starter kit with a focus on a modular file structure for self contained functionality.</p>
-    hello
   </Flexbox>
 )
 
