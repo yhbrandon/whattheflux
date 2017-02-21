@@ -10,18 +10,6 @@ const config = {
   host : process.env.HOST || 'localhost'
 }
 
-config.paths = {
-  base : BASE,
-  src  : `${BASE}/src`,
-  dist : `${BASE}/dist`,
-  node_modules: `${BASE}/node_modules`
-}
-
-config.api = {
-  host: 'localhost',
-  port: 8080
-}
-
 config.globals = {
   'process.env': {
     'NODE_ENV': JSON.stringify(config.env)
@@ -29,6 +17,13 @@ config.globals = {
   'NODE_ENV' : config.env,
   '__DEV__'  : config.env === 'development',
   '__PROD__' : config.env === 'production'
+}
+
+config.paths = {
+  base : BASE,
+  src  : `${BASE}/src`,
+  dist : `${BASE}/dist`,
+  node_modules: `${BASE}/node_modules`
 }
 
 export default config

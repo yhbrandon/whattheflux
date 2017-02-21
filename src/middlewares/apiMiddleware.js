@@ -1,4 +1,10 @@
+// Config
+import config from 'core/config'
+
+// Utils
 import { fetchJSON } from 'core/utils'
+
+const { CALL_API } = config.actionTypes
 
 /*
  * @name apiMiddleware
@@ -10,7 +16,7 @@ import { fetchJSON } from 'core/utils'
 export default store => next => action => {
   const { type, types, payload } = action
 
-  if (type !== 'CALL_API') return next(action)
+  if (type !== CALL_API) return next(action)
 
   const [ REQUEST, RECEIVE, ERROR ] = types
   const { body, headers, endpoint, key, method, dataType } = payload
@@ -27,7 +33,7 @@ export default store => next => action => {
     }),
     error => next({
       type: ERROR,
-      payload: error.response,
+      payload: error,
       key
     }))
 }

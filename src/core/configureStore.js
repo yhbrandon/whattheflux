@@ -1,9 +1,9 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import { routerMiddleware } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
-import apiMiddleware from 'middlewares/apiMiddleware'
-import appMiddleware from 'middlewares/appMiddleware'
 import createLogger from 'redux-logger'
+
+import { apiMiddleware, appMiddleware, routeMiddleware } from 'middlewares'
 
 export default (preloadedState, history, rootReducer) => {
   let loggerMiddleware = createLogger()
@@ -13,6 +13,7 @@ export default (preloadedState, history, rootReducer) => {
     routerMiddleware(history),
     apiMiddleware,
     appMiddleware,
+    routeMiddleware,
     loggerMiddleware
   ]
 

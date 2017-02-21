@@ -2,8 +2,8 @@
 import React, { PropTypes } from 'react'
 
 // Modules
-import Footer from 'modules/Footer'
-import Header from 'modules/Header'
+import Footer from 'components/Footer'
+import Header from 'components/Header'
 
 // Styles
 import 'core/theme/commons.scss'

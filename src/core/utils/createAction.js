@@ -1,4 +1,14 @@
-import config from '../../../config'
+import config from 'core/config'
+import { getToken } from 'core/utils'
+
+const {
+  CALL_API,
+  CALL_APP,
+  REQUEST,
+  RECEIVE,
+  ERROR,
+  SET,
+  ROUTE } = config.actionTypes
 
 /**
  * @name createAction (public)
@@ -10,12 +20,12 @@ const action = (type, action) => {
   if (!action) return
 
   switch (type) {
-    case 'CALL_API':
+    case CALL_API:
       return apiAction(action)
-    case 'CALL_APP':
+    case CALL_APP:
       return appAction(action)
-    case 'CALL_EVENT' || ROUTE:
-      return gaAction(type, action)
+    case ROUTE:
+      return routeAction(type, action)
     default:
       return action
   }
@@ -39,14 +49,16 @@ const apiAction = (action) => {
    * - body     (optional)
    */
 
+  // Uncomment authorization if you want auth
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    //'Authorization': getToken()
   }
 
   return {
-    type: 'CALL_API',
-    types: ['REQUEST', 'RECEIVE', 'ERROR'],
+    type: CALL_API,
+    types: [REQUEST, RECEIVE, ERROR],
     payload: {
       body: action.body ? action.body : null,
       headers: action.headers ? action.headers : headers,
@@ -71,34 +83,33 @@ const appAction = (action) => {
    */
 
   return {
-    type: 'CALL_APP',
-    types: ['SET'],
+    type: CALL_APP,
+    types: [SET],
     payload: {
       key: action.key,
-      payload: action.payload
+      payload: action.payload,
+      event: action.event
     }
   }
 }
 
 /**
  * @name apiAction (private)
- * @description Build action for ga calls
+ * @description Build action for route changes
  * @param {object} action object passed in from action const
  */
-const gaAction = (type, action) => {
+const routeAction = (type, action) => {
   /*
    * Action object expects:
    * - key      (required)
    * - payload  (required)
-   * - tracking (required)
    */
 
   return {
     type: type,
     payload: {
       key: action.key,
-      payload: action.payload,
-      tracking: action.tracking
+      payload: action.payload
     }
   }
 }

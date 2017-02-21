@@ -1,3 +1,8 @@
+import config from 'core/config'
+
+// Constants
+const { SET } = config.actionTypes
+
 // Initial State
 const initialState = {}
 
@@ -11,7 +16,7 @@ const item = (state = {}, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case 'SET':
+    case SET:
       return Object.assign({}, state, payload)
     default:
       return state

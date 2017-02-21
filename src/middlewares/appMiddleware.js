@@ -1,5 +1,13 @@
+// Config
+import config from 'core/config'
+
+// Utils
+import { trackEvent } from 'core/utils'
+
+const { CALL_APP } = config.actionTypes
+
 /*
- * @name apiMiddleware
+ * @name appMiddleware
  * @description middleware responsible for handling CALL_API actions
  * @param {object}   action params passed in from action
  * @param {function} next   redux dispatch function
@@ -8,7 +16,14 @@
 export default store => next => action => {
   const { type, types, payload } = action
 
-  if (type !== 'CALL_APP') return next(action)
+  if (type !== CALL_APP) return next(action)
+
+  // Uncomment block if you want GA tracking
+  // if (payload) {
+  //   const { event } = payload
+
+  //   trackEvent(event)
+  // }
 
   const [ SET ] = types
 
