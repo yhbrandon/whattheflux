@@ -9,13 +9,10 @@
     "curly": 0,
     "global-require": "off",
     "import/extensions": 0,
-    "import/no-extraneous-dependencies": [
-      "error", {
-        "devDependencies": true
-      }
-    ],
+    "import/no-extraneous-dependencies": 0,
     "jsx-quotes": [2, "prefer-single"],
     "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
     "react/jsx-curly-spacing": [2, "always", {"spacing": {
       "objectLiterals": "never"
     }}],
