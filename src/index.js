@@ -46,7 +46,6 @@ if (module.hot) {
 
     reRenderApp(NewApp)
   })
-
 }
 
 renderApp(Routes)

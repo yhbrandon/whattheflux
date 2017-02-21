@@ -1,5 +1,5 @@
 // Core
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 // Thirdparty
 import { AppBar } from 'react-toolbox'
@@ -11,7 +11,7 @@ import theme from './Header.scss'
 // Assets
 import logo from 'assets/logo.png'
 
-const Header = (props) => (
+const Header = () => (
   <div className={ theme.appBar } data-what-the-flux='header'>
     <AppBar className={ theme.header } flat fixed>
       <Flexbox className={ theme.wrapper } layout='row' flex align='start center'>
