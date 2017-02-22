@@ -7,10 +7,10 @@ import { getUserId } from 'core/utils'
 
 // initialize GA with tracking id and user id
 const initializeGA = () => {
-  const trackingId = getTrackingId() || 0
+  const trackingId = getTrackingId()
 
   if (trackingId) {
-    const userId = getUserId() || 0
+    const userId = getUserId()
     let options = {}
 
     if (userId) {
