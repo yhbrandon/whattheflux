@@ -5,7 +5,9 @@
     "clean": "rimraf dist",
     "compile": "npm run clean && babel-node bin/compile.js",
     "dev": "NODE_ENV=development nodemon --exec babel-node --harmony bin/server.js",
-    "lint:js": "eslint src || true"
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "eslint src || true",
+    "lint:scss": "stylelint '**/*.scss'; exit 0"
   },
   "license": "MIT",
   "devDependencies": {
@@ -20,6 +22,8 @@
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "nodemon": "^1.11.0",
     "rimraf": "^2.5.4",
+    "stylelint": "^7.9.0",
+    "stylelint-config-sass-guidelines": "^2.0.0",
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {

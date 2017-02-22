@@ -1,11 +1,11 @@
-@import "~react-toolbox/lib/colors";
-@import "~react-toolbox/lib/globals";
+@import '~react-toolbox/lib/colors';
+@import '~react-toolbox/lib/globals';
 
 .footer {
   border-top: 1px solid $color-divider;
   bottom: 0;
   box-sizing: border-box;
-  position: absolute;
   padding: $layout-gutter-width-sm;
+  position: absolute;
   width: 100%;
 }
