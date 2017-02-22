@@ -18,12 +18,8 @@ export default store => next => action => {
 
   if (type !== CALL_APP) return next(action)
 
-  // Uncomment block if you want GA tracking
-  // if (payload) {
-  //   const { event } = payload
-
-  //   trackEvent(event)
-  // }
+  // Google Analytics event tracking
+  if (payload && payload.event) trackEvent(payload.event)
 
   const [ SET ] = types
 
