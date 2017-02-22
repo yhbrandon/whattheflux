@@ -9,7 +9,7 @@ import Flexbox from 'react-material-flexbox'
 import theme from './Header.scss'
 
 // Assets
-import logo from 'assets/logo.png'
+import logo from './logo.png'
 
 const Header = () => (
   <div data-what-the-flux='header'>
