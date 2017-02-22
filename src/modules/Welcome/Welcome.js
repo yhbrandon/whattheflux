@@ -11,7 +11,7 @@ import logo from 'assets/logo.png'
 import theme from './Welcome.scss'
 
 const Welcome = () => (
- <Flexbox className={ theme.welcome } layout='column' align='center center'>
+  <Flexbox className={ theme.welcome } layout='column' align='center center'>
     <img className={ theme.logo } src={ logo } />
     <h3>What the Flux!</h3>
     <p>React / Redux starter kit with a focus on a modular file structure for self contained functionality.</p>

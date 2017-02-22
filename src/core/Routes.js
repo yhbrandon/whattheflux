@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { IndexRoute, Route, Router } from 'react-router'
 
 // Views
@@ -14,5 +14,9 @@ const Routes = ({ history }) => (
     </Route>
   </Router>
 )
+
+Routes.propTypes = {
+  history: PropTypes.object
+}
 
 export default Routes

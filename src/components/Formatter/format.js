@@ -23,8 +23,8 @@ export default format
 // Print Methods
 
 const printAbbrNumber = value => {
-  let negative = isNegative(value)
-  let suffix = getSuffix(value)
+  const negative = isNegative(value)
+  const suffix = getSuffix(value)
 
   value = abbreviate(value)
 
@@ -34,8 +34,8 @@ const printAbbrNumber = value => {
 }
 
 const printAbbrCurrency = value => {
-  let negative = isNegative(value)
-  let suffix = getSuffix(value)
+  const negative = isNegative(value)
+  const suffix = getSuffix(value)
 
   value = abbreviate(value)
 
@@ -45,7 +45,7 @@ const printAbbrCurrency = value => {
 }
 
 const printCurrency = value => {
-  let negative = isNegative(value)
+  const negative = isNegative(value)
 
   value = insertCommas(roundNumber(value))
 
@@ -55,7 +55,7 @@ const printCurrency = value => {
 }
 
 const printNumber = value => {
-  let negative = isNegative(value)
+  const negative = isNegative(value)
 
   value = insertCommas(roundNumber(value))
 
@@ -65,7 +65,7 @@ const printNumber = value => {
 }
 
 const printPercent = value => {
-  let negative = isNegative(value)
+  const negative = isNegative(value)
 
   value = percent(value)
 
@@ -89,7 +89,7 @@ const abbreviate = value => {
 }
 
 const getSuffix = value => {
-  let suffixes = ['', 'k', 'm', 'b']
+  const suffixes = ['', 'k', 'm', 'b']
   let suffix = suffixes[0]
 
   if (value >= 1000000000 || value <= -1000000000) {

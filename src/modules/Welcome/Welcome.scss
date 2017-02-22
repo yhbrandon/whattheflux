@@ -1,11 +1,12 @@
-@import "~react-toolbox/lib/colors";
-@import "~react-toolbox/lib/globals";
+@import '~react-toolbox/lib/colors';
+@import '~react-toolbox/lib/globals';
 
 .welcome {
   height: 100%;
   margin: ($standard-increment-desktop * 2) 0;
 
-  h3, p {
+  h3,
+  p {
     color: $color-text-secondary;
   }
 
