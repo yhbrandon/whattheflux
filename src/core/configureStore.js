@@ -6,9 +6,9 @@ import createLogger from 'redux-logger'
 import { apiMiddleware, appMiddleware, routeMiddleware } from 'middlewares'
 
 export default (preloadedState, history, rootReducer) => {
-  let loggerMiddleware = createLogger()
+  const loggerMiddleware = createLogger()
 
-  let middlewares = [
+  const middlewares = [
     thunkMiddleware,
     routerMiddleware(history),
     apiMiddleware,
@@ -17,7 +17,7 @@ export default (preloadedState, history, rootReducer) => {
     loggerMiddleware
   ]
 
-  let store = createStore(
+  const store = createStore(
     rootReducer,
     preloadedState,
     compose(

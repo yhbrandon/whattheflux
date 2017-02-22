@@ -8,7 +8,7 @@ import Formatter from './Formatter'
 
 describe('Formatter - Component', () => {
   let module
-  let value = 1234
+  const value = 1234
 
   beforeEach(() => {
     module = shallow(<Formatter type='number' value={ value } />)
