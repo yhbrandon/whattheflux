@@ -1,7 +1,12 @@
-import chai from 'chai'
-import chaiEnzyme from 'chai-enzyme'
+import config from '../../config'
 
-chai.use(chaiEnzyme())
+const testConfig = {
+  resolve: {
+    alias: {
+      data: `${config.paths.data}`
+    },
+    extensions: ['', '.js', '.jsx', '.json']
+  }
+}
 
-const context = require.context('../src', true, /\.spec\.js$/)
-context.keys().forEach(context);
+export default testConfig

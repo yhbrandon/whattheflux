@@ -3,6 +3,13 @@
   "env": {
     "development": {
       "plugins": ["react-hot-loader/babel"]
+    },
+    "test": {
+      "plugins": [
+        ["babel-plugin-webpack-alias", {
+          "config": "./webpack/webpack.test.config.js"
+        }]
+      ]
     }
   }
 }

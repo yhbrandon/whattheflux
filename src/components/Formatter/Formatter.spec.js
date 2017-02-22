@@ -20,10 +20,10 @@ describe('Formatter - Component', () => {
   })
 
   it('should render', () => {
-    expect(module).to.have.data('black-locus', 'formatter')
+    expect(module.exists()).to.be.true
   })
 
   it('should render a <span /> component', () => {
-    expect(module.find('span')).to.have.text('1,234')
+    expect(module.find('span').text()).to.equal('1,234')
   })
 })
