@@ -11,11 +11,8 @@ export default store => next => action => {
 
   if (type !== ROUTE) return next(action)
 
-  if (payload) {
-    const { pathname } = payload
-
-    trackRouteChange(pathname)
-  }
+  // Google Analytics route tracking
+  if (payload && payload.pathname) trackRouteChange(payload.pathname)
 
   return next(action)
 }
