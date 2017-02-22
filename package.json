@@ -8,7 +8,8 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint src || true",
     "lint:scss": "stylelint '**/*.scss'; exit 0",
-    "test": "mocha src/**/*.spec.js* --compilers js:babel-core/register --require config/mocha/mocha.config.js"
+    "test": "mocha src/**/*.spec.js* --compilers js:babel-core/register --require config/mocha/mocha.config.js",
+    "test:watch": "npm run test -- --watch --reporter min"
   },
   "license": "MIT",
   "devDependencies": {
