@@ -8,7 +8,7 @@ import fetch from 'isomorphic-fetch'
  * @param {string || object} body     endpoint body
  */
 const fetchJSON = (endpoint, method, headers, body) => {
-  let options = {
+  const options = {
     method: method,
     headers: headers
   }

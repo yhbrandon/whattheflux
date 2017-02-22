@@ -28,6 +28,7 @@ config.api = {
 }
 
 config.auth = {
+  required: false,
   cookie: 'access_token'
 }
 

@@ -38,7 +38,7 @@ const action = (type, action) => {
  */
 const apiAction = (action) => {
   // Builds url for api
-  let url = action.external ? action.endpoint : `http://${config.api.host}:${config.api.port}/${action.endpoint}`
+  const url = action.external ? action.endpoint : `http://${config.api.host}:${config.api.port}/${action.endpoint}`
 
   /*
    * Action object expects:
@@ -52,8 +52,11 @@ const apiAction = (action) => {
   // Uncomment authorization if you want auth
   const headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    //'Authorization': getToken()
+    'Content-Type': 'application/json'
+  }
+
+  if (config.auth.required) {
+    headers['Authorization'] = getToken()
   }
 
   return {
@@ -75,14 +78,13 @@ const apiAction = (action) => {
  * @description Build action for app calls
  * @param {object} action object passed in from action const
  */
-const appAction = (action) => {
+const appAction = action => (
    /*
    * Action object expects:
    * - key      (required)
    * - payload  (required)
    */
-
-  return {
+  {
     type: CALL_APP,
     types: [SET],
     payload: {
@@ -91,27 +93,27 @@ const appAction = (action) => {
       event: action.event
     }
   }
-}
+)
 
 /**
  * @name apiAction (private)
  * @description Build action for route changes
  * @param {object} action object passed in from action const
  */
-const routeAction = (type, action) => {
+const routeAction = (type, action) => (
   /*
    * Action object expects:
    * - key      (required)
    * - payload  (required)
    */
 
-  return {
+  {
     type: type,
     payload: {
       key: action.key,
       payload: action.payload
     }
   }
-}
+)
 
 export default action
