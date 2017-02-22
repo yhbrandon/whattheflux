@@ -4,6 +4,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "compile": "npm run clean && babel-node bin/compile.js",
+    "deploy": "NODE_ENV=production npm run compile",
     "dev": "NODE_ENV=development nodemon --exec babel-node --harmony bin/server.js",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint src || true",
