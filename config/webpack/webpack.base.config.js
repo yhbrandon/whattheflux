@@ -30,19 +30,30 @@ const baseConfig = {
     }, {
       test: /(\.scss|\.css)$/,
       use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        loader: [
+        fallback: "style-loader",
+        use: [
           {
             loader: 'css-loader',
             options: {
-              modules: true
+              context: '/',
+              importLoaders: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+              modules: true,
+              sourceMap: true
             }
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
+            options: { plugins: () => [autoprefixer] }
           },
           {
-            loader: 'sass-loader'
+            loader: 'sass-loader',
+            options: {
+              context: '/',
+              data: `@import "${config.paths.src}/core/theme/_config.scss";`,
+              includePaths: [path.resolve(__dirname, 'src', 'scss')],
+              sourceMap: true
+            }
           }
         ]
       })
@@ -52,23 +63,13 @@ const baseConfig = {
     }]
   },
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [autoprefixer],
-        sassLoader: {
-          context: '/',
-          data: `@import "${config.paths.src}/core/theme/_config.scss";`,
-          includePaths: [path.resolve(__dirname, 'src', 'scss')]
-        }
-      }
-    }),
     new HtmlWebpackPlugin({
       template: `${config.paths.src}/index.html`,
       hash: false,
       filename: 'index.html',
       inject: true
     }),
-    new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
+    new ExtractTextPlugin({ filename: "[name].[contenthash].css", allChunks: true }),
     new webpack.DefinePlugin(config.globals),
   ]
 }

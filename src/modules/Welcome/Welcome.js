@@ -5,7 +5,7 @@ import React from 'react'
 import Flexbox from 'react-material-flexbox'
 
 // Assets
-import logo from 'assets/logo.png'
+import logo from './logo.png'
 
 // Theme
 import theme from './Welcome.scss'
