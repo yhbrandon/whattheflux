@@ -13,6 +13,32 @@ const devConfig = {
     'react-hot-loader/patch',
     `${config.paths.src}/index.js`
   ],
+  module: {
+    rules: [{
+      test: /(\.scss|\.css)$/,
+      use: [
+        { loader: 'style-loader' },
+        {
+          loader: 'css-loader',
+          options: {
+            localIdentName: '[name]__[local]--[hash:base64:5]',
+            modules: true,
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'postcss-loader',
+          options: { plugins: () => [autoprefixer] }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            data: `@import "${config.paths.src}/core/theme/_config.scss";`,
+            sourceMap: true
+          }
+        }
+      ]
+    }]
+  },
   devtool: 'cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

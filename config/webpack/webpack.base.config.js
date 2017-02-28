@@ -1,4 +1,3 @@
-import path from 'path'
 import webpack from 'webpack'
 import autoprefixer from 'autoprefixer'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -28,36 +27,6 @@ const baseConfig = {
       include: [`${config.paths.src}`],
       exclude: /node_modules/,
     }, {
-      test: /(\.scss|\.css)$/,
-      use: ExtractTextPlugin.extract({
-        fallback: "style-loader",
-        use: [
-          {
-            loader: 'css-loader',
-            options: {
-              context: '/',
-              importLoaders: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-              modules: true,
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: { plugins: () => [autoprefixer] }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              context: '/',
-              data: `@import "${config.paths.src}/core/theme/_config.scss";`,
-              includePaths: [path.resolve(__dirname, 'src', 'scss')],
-              sourceMap: true
-            }
-          }
-        ]
-      })
-    }, {
       test: /\.(png|jpg|gif|jpeg)$/,
       use: ['file-loader?name=img/img-[hash:6].[ext]']
     }]
@@ -69,7 +38,6 @@ const baseConfig = {
       filename: 'index.html',
       inject: true
     }),
-    new ExtractTextPlugin({ filename: "[name].[contenthash].css", allChunks: true }),
     new webpack.DefinePlugin(config.globals),
   ]
 }
