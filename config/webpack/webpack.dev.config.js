@@ -1,4 +1,4 @@
-
+import autoprefixer from 'autoprefixer'
 import webpack from 'webpack'
 import merge from 'webpack-merge'
 import { assign } from 'lodash'
@@ -28,7 +28,7 @@ const devConfig = {
         },
         {
           loader: 'postcss-loader',
-          options: { plugins: () => [autoprefixer] }
+          options: { plugins: () => { return [ autoprefixer ] } }
         }, {
           loader: 'sass-loader',
           options: {

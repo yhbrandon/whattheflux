@@ -1,3 +1,4 @@
+import autoprefixer from 'autoprefixer'
 import path from 'path'
 import webpack from 'webpack'
 import merge from 'webpack-merge'
@@ -25,7 +26,7 @@ const prodConfig = {
           },
           {
             loader: 'postcss-loader',
-            options: { plugins: () => [autoprefixer] }
+            options: { plugins: () => { return [ autoprefixer ] } }
           },
           {
             loader: 'sass-loader',
@@ -37,7 +38,7 @@ const prodConfig = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    new ExtractTextPlugin({ filename: "[name]-[contenthash].css", allChunks: true }),
+    new ExtractTextPlugin({ filename: '[name]-[contenthash].css', allChunks: true }),
     new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
   ]
 }
