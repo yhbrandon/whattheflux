@@ -2,3 +2,4 @@ node_modules/
 dist/
 config/
 bin/
+src/core/configureStore.js
